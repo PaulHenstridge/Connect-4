@@ -1,14 +1,15 @@
 import Slot from "./Slot";
 import { styled } from "styled-components";
 
-const rowContainer = styled.div`
+const RowContainer = styled.div`
     display:flex;
+    justify-content: space-evenly;
 `
 
 const Row = ({rowArr}) => {
-    return ( <>
+    return ( <RowContainer>
     {rowArr.map(slotVal => <Slot value={slotVal} />)}
-    </> );
+    </RowContainer> );
 }
  
 export default Row;

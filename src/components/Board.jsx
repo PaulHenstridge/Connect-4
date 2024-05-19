@@ -1,17 +1,19 @@
+import ColumnButtons from "./ColumnButtons";
 import Row from "./Row";
+import { styled } from "styled-components";
 
+
+const BoardContainer = styled.div`
+    width:80vw;
+
+`
 
 const Board = ({boardArr}) => {
 
-    // for (let row in boardArr){
-    //     for(let slot in row){
-            
-    //     }
-    // }
 
-    return (<>
-    {boardArr.map(rowArr => <Row rowArr={rowArr} />)}  
-    </>
+    return (<BoardContainer>
+        {boardArr.map(rowArr => <Row rowArr={rowArr} />)}  
+    </BoardContainer>
     )
 }
  
