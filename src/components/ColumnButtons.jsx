@@ -7,7 +7,7 @@ const ButtonContainer = styled.div`
 `
 const ColumnButtons = ({boardArr, onColumnSelect}) => {
     return ( <ButtonContainer>
-    {boardArr[0].map((column, index) => <Button index={index} onColumnSelect={onColumnSelect}/>)}
+    {boardArr[0].map((column, index) => <Button key={index} index={index} onColumnSelect={onColumnSelect}/>)}
     </ButtonContainer> );
 }
  
