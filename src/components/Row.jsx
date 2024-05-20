@@ -8,7 +8,7 @@ const RowContainer = styled.div`
 
 const Row = ({rowArr}) => {
     return ( <RowContainer>
-    {rowArr.map(slotVal => <Slot value={slotVal} />)}
+    {rowArr.map((slotVal, idx) => <Slot value={slotVal} key={idx}/>)}
     </RowContainer> );
 }
  

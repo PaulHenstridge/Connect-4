@@ -12,7 +12,7 @@ const Board = ({boardArr}) => {
 
 
     return (<BoardContainer>
-        {boardArr.map(rowArr => <Row rowArr={rowArr} />)}  
+        {boardArr.map((rowArr, idx) => <Row rowArr={rowArr} key={idx} />)}  
     </BoardContainer>
     )
 }
