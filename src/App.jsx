@@ -36,9 +36,13 @@ function App() {
           setBoard(newBoard);
           // check for wins
           const playerNumber = isP1 ? 1 : 2;
-          if (checkHorizontalWin(newBoard,rowIndex, playerNumber )){
+          if (
+            checkHorizontalWin(newBoard,rowIndex, playerNumber )
+            ||
+            checkVerticalWin(newBoard, columnIndex,playerNumber)
+          ){
             declareWinner(playerNumber)
-          }
+            }
 
 
           setIsP1(prevIsP1 => !prevIsP1)
@@ -66,6 +70,18 @@ function App() {
 
   }
      // check for vertical win
+    const checkVerticalWin = (board, columnIndex, player) => {
+    let count = 0;
+    for (let rowIndex = 0; rowIndex < board.length; rowIndex++) {
+      if (board[rowIndex][columnIndex] === player) {
+        count++;
+        if (count === 4) return true;
+      } else {
+        count = 0;
+      }
+    }
+    return false;
+    };
     // check for diagonal win
 
   const declareWinner = (winner) => {
@@ -74,7 +90,7 @@ function App() {
   }
 
   useEffect(()=> {
-    console.log(`By the power of useEffect i delae player ${winner} the weeeeeener!`)
+    console.log(`By the power of useEffect player ${winner} is the weeeeeener!`)
   },[winner])
 
   return (
