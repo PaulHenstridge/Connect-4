@@ -86,7 +86,8 @@ function App() {
     };
     // check diagonals up to 3 slots away in either direction, on both diagonals
     const checkDiagonalWin = (board, rowIndex, columnIndex, player) => {
-      // Check / diagonal (top-left to bottom-right)
+      
+      // top-left to bottom-right
       let count = 0;
       for (let i = -3; i <= 3; i++) {
         const r = rowIndex + i;
@@ -101,7 +102,7 @@ function App() {
         }
       }
   
-      // Check \ diagonal (top-right to bottom-left)
+      // top-right to bottom-left
       count = 0;
       for (let i = -3; i <= 3; i++) {
         const r = rowIndex + i;
@@ -125,7 +126,9 @@ function App() {
   }
 
   useEffect(()=> {
-    console.log(`By the power of useEffect player ${winner} is the weeeeeener!`)
+    if(winner !== null){
+      console.log(`By the power of useEffect player ${winner} is the weeeeeener!`)
+    }
   },[winner])
 
   return (
@@ -134,6 +137,12 @@ function App() {
       <h1>Connect-4</h1>
       <ColumnButtons boardArr={board} onColumnSelect={onColumnSelect}/>
       <Board boardArr={board}/>
+      {gameOver && winner !== null && (
+        <div className="win-message">
+          <p>Player {winner} wins!</p>
+          <button onClick={() => window.location.reload()}>Play again?</button>
+        </div>
+      )}
     </>
   )
 }

@@ -3,7 +3,8 @@ import { styled } from "styled-components";
 
 const RowContainer = styled.div`
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 1em;
 `
 
 const Row = ({rowArr}) => {

@@ -3,7 +3,8 @@ import { styled } from "styled-components";
 
 const ButtonContainer = styled.div`
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding:0 1em;
 `
 const ColumnButtons = ({boardArr, onColumnSelect}) => {
     return ( <ButtonContainer>
