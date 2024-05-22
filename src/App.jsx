@@ -40,6 +40,8 @@ function App() {
             checkHorizontalWin(newBoard,rowIndex, playerNumber )
             ||
             checkVerticalWin(newBoard, columnIndex,playerNumber)
+            ||
+            checkDiagonalWin(newBoard, rowIndex, columnIndex, playerNumber)
           ){
             declareWinner(playerNumber)
             }
@@ -51,16 +53,16 @@ function App() {
       }
     }
   }
-// comment how this works
+// initialise reduce with an object to track the count and if a win condition is found
+// reduce function will return accumulator if board becomes true
+// overall function returns the final state of 'found' when acc is returned.
   const checkHorizontalWin = (board, rowIndex, player) => {
       return board[rowIndex].reduce((acc, value) => {
         if(acc.found) return acc;
         if( value === player){
           acc.count++;
-          console.log(acc)
           if( acc.count === 4) {
             acc.found = true;
-            console.log(`player ${player} wins!`)
           }
         } else {
           acc.count = 0;
@@ -82,7 +84,40 @@ function App() {
     }
     return false;
     };
-    // check for diagonal win
+    // check diagonals up to 3 slots away in either direction, on both diagonals
+    const checkDiagonalWin = (board, rowIndex, columnIndex, player) => {
+      // Check / diagonal (top-left to bottom-right)
+      let count = 0;
+      for (let i = -3; i <= 3; i++) {
+        const r = rowIndex + i;
+        const c = columnIndex + i;
+        if (r >= 0 && r < board.length && c >= 0 && c < board[0].length) {
+          if (board[r][c] === player) {
+            count++;
+            if (count === 4) return true;
+          } else {
+            count = 0;
+          }
+        }
+      }
+  
+      // Check \ diagonal (top-right to bottom-left)
+      count = 0;
+      for (let i = -3; i <= 3; i++) {
+        const r = rowIndex + i;
+        const c = columnIndex - i;
+        if (r >= 0 && r < board.length && c >= 0 && c < board[0].length) {
+          if (board[r][c] === player) {
+            count++;
+            if (count === 4) return true;
+          } else {
+            count = 0;
+          }
+        }
+      }
+  
+      return false;
+    };
 
   const declareWinner = (winner) => {
     setGameOver(true);
