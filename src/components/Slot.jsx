@@ -6,7 +6,7 @@ const SlotBox = styled.div`
     border-radius:50%;
     width:1em;
     aspect-ratio:1;
-    background-color:${props => props.value===1 ? 'red' : props.value===2 ? 'blue' : 'transparent'}
+    background-color:${props => props.value===1 ? 'red' : props.value===2 ? 'blue' : '#333232'}
     
 `
 

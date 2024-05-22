@@ -6,6 +6,7 @@ import { styled } from "styled-components";
 const BoardContainer = styled.div`
     width:80vw;
     border:2px solid white;
+    background-color: #191818;
 
 `
 

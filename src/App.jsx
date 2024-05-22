@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Board from './components/Board'
 import ColumnButtons from './components/ColumnButtons'
+import DisplayPanel from './components/DisplayPanel'
+import Header from './components/header'
 
 function App() {
   const [board, setBoard] = useState([
@@ -133,16 +135,10 @@ function App() {
 
   return (
     <>
-
-      <h1>Connect-4</h1>
+      <Header />
       <ColumnButtons boardArr={board} onColumnSelect={onColumnSelect}/>
       <Board boardArr={board}/>
-      {gameOver && winner !== null && (
-        <div className="win-message">
-          <p>Player {winner} wins!</p>
-          <button onClick={() => window.location.reload()}>Play again?</button>
-        </div>
-      )}
+      <DisplayPanel gameOver={gameOver} winner={winner} player={isP1?1:2}/>
     </>
   )
 }
