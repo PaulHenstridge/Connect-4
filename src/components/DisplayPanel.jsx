@@ -22,7 +22,6 @@ const PlayAgainButton = styled.button`
 
     &:hover{
         opacity:0.85;
-       
         box-shadow:0px 0px 6px 3px white;
     }
 `

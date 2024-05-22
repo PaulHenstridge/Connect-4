@@ -7,6 +7,9 @@ import ColumnButtons from './components/ColumnButtons'
 import DisplayPanel from './components/DisplayPanel'
 import Header from './components/header'
 
+import apiCall from './utils/openAIApiCall.js'
+import ToggleAI from './components/ToggleAI'
+
 function App() {
   const [board, setBoard] = useState([
     [0,0,0,0,0,0,0],
@@ -16,6 +19,8 @@ function App() {
     [0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0]
   ]);
+
+  const [AIOpponent , setAIOpponent] = useState(false);
 
   const [isP1, setIsP1] = useState(true);
 
@@ -127,7 +132,19 @@ function App() {
     setWinner(winner)
   }
 
-  useEffect(()=> {
+  useEffect(() => {
+    const fetchData = async () => {
+      if (AIOpponent && !isP1 && !gameOver) {
+        const response = await apiCall(board);
+        console.log(response);
+        onColumnSelect(response)
+      }
+    };
+
+    fetchData();
+  }, [board, isP1, gameOver]);
+
+  useEffect(() => {
     if(winner !== null){
       console.log(`By the power of useEffect player ${winner} is the weeeeeener!`)
     }
@@ -136,7 +153,10 @@ function App() {
   return (
     <>
       <Header />
+      <ToggleAI AIOpponent={AIOpponent} setAIOpponent={setAIOpponent}/>
+      {/* {isP1 &&  */}
       <ColumnButtons boardArr={board} onColumnSelect={onColumnSelect}/>
+      {/* } */}
       <Board boardArr={board}/>
       <DisplayPanel gameOver={gameOver} winner={winner} player={isP1?1:2}/>
     </>
