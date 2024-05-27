@@ -7,6 +7,8 @@ import ColumnButtons from './components/ColumnButtons'
 import DisplayPanel from './components/DisplayPanel'
 import Header from './components/header'
 
+import socket from './utils/socket'
+
 import apiCall from './utils/openAIApiCall.js'
 import ToggleAI from './components/ToggleAI'
 
@@ -152,6 +154,7 @@ function App() {
 
   return (
     <>
+    <button onClick={() => socket.emit('join')}>Test server response</button>
       <Header />
       <ToggleAI AIOpponent={AIOpponent} setAIOpponent={setAIOpponent}/>
       {/* {isP1 &&  */}
