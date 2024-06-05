@@ -152,9 +152,19 @@ function App() {
     }
   },[winner])
 
+  //socket testing
+  useEffect(() => {
+    socket.on('enterLobbyResponse', data => {
+        console.log('enterLobby event received ', data)
+    })
+    return () => {
+        socket.off('enterLobby');
+    }
+}, [socket])
+
   return (
     <>
-    <button onClick={() => socket.emit('join')}>Test server response</button>
+    <button onClick={() => socket.emit('enterLobby', {name:"Pies"})}>Test server response</button>
       <Header />
       <ToggleAI AIOpponent={AIOpponent} setAIOpponent={setAIOpponent}/>
       {/* {isP1 &&  */}
