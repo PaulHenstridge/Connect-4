@@ -164,14 +164,11 @@ function App() {
 
   return (
     <>
-    <button onClick={() => socket.emit('enterLobby', {name:"Pies"})}>Test server response</button>
       <Header />
-      <ToggleAI AIOpponent={AIOpponent} setAIOpponent={setAIOpponent}/>
-      {/* {isP1 &&  */}
+      {/* <ToggleAI AIOpponent={AIOpponent} setAIOpponent={setAIOpponent}/> */}
       <ColumnButtons boardArr={board} onColumnSelect={onColumnSelect}/>
-      {/* } */}
       <Board boardArr={board}/>
-      <DisplayPanel gameOver={gameOver} winner={winner} player={isP1?1:2}/>
+      {/* <DisplayPanel gameOver={gameOver} winner={winner} player={isP1?1:2}/> */}
     </>
   )
 }
